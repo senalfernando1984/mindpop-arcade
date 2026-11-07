@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+ <meta name="theme-color" content="#6e4dff"/>
+ <meta name="apple-mobile-web-app-capable" content="yes"/>
+ <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+ <meta name="apple-mobile-web-app-title" content="MindPop"/>
+ <meta name="description" content="Tiny games, big brain energy. A colourful offline-first puzzle arcade. Play Peg Jump now!"/>
+ <meta property="og:title" content="MindPop Arcade — Little games, big brain energy"/>
+ <meta property="og:description" content="Come play Peg Jump: 15 holes, 14 pegs, one brilliant finish."/>
+ <meta property="og:type" content="website"/>
+ <link rel="manifest" href="/manifest.webmanifest"/>
+ <link rel="icon" href="/icons/logo.svg" type="image/svg+xml"/>
+ <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+ <link rel="stylesheet" href="/styles.css"/>
+ <title>MindPop Arcade — Tiny games, big brain energy</title>
+</head>
+<body data-skin="candy">
+ <div class="glow glow-one" aria-hidden="true"></div><div class="glow glow-two" aria-hidden="true"></div>
+ <div class="site-shell">
+  <header class="site-header">
+   <button class="brand" id="brandBtn" aria-label="MindPop Arcade home">
+    <img src="/icons/logo.svg" width="42" height="42" alt=""/>
+    <span>mindpop<span class="brand-dot">.</span><small>YOUR LITTLE BRAIN BREAK</small></span>
+   </button>
+   <nav class="top-nav" aria-label="Main navigation">
+    <button data-nav="home" class="nav-link active">Home</button>
+    <button data-nav="play" class="nav-link">Play now</button>
+    <button data-nav="games" class="nav-link">Games</button>
+   </nav>
+   <div class="header-right"><span class="header-note"><span class="live-dot"></span> A LITTLE JOY, EVERY DAY</span><button id="installBtn" class="header-install" hidden>↘ Install app</button></div>
+  </header>
+  <main>
+   <section id="homeView" class="page-view">
+    <div class="hero-layout">
+     <div class="hero-content">
+      <div class="eyebrow"><span class="star-mark">✦</span> WELCOME TO YOUR HAPPY PLACE</div>
+      <h1>Little games.<br/><span>Big brain</span><br/>energy<span class="exclamation">!</span></h1>
+      <p>Colorful little challenges for curious minds. Take a break, spark a thought, and see how clever you can get.</p>
+      <div class="hero-actions"><button id="heroPlay" class="btn btn-primary btn-lg">Play Peg Jump <span>↗</span></button><button id="heroBrowse" class="btn btn-light btn-lg">Explore games <span>↘</span></button></div>
+      <div class="hero-meta"><span>✷ No signup</span><span>✷ Works offline</span><span>✷ Just play</span></div>
+     </div>
+     <div class="hero-art" aria-hidden="true">
+      <div class="deco deco-squiggle">〰</div><div class="deco deco-sparkle">✳</div>
+      <div class="art-orbit orbit-back"></div><div class="art-orbit orbit-front"></div>
+      <div class="art-board"><span class="art-sticker">YOUR MOVE! ✨</span><div class="mini-pegs" id="miniPegs"></div><div class="art-foot">A tiny challenge.<br/>A big little victory.</div></div>
+      <div class="art-bubble">🧠 <b>brain power</b> +10</div>
+     </div>
+    </div>
+    <div class="section-heading"><div><span class="kicker">THE GOOD STUFF</span><h2>Pick your kind of <em>fun.</em></h2></div><button class="text-link" id="allGamesBtn">All games <span>↗</span></button></div>
+    <div id="homeCards" class="game-grid"></div>
+    <div class="home-strip"><div class="strip-icon">✦</div><div><b>One small puzzle a day.</b><span>Keep your curious side glowing. No pressure, just play.</span></div><button class="btn btn-white" id="dailyQuick">Try today's challenge →</button></div>
+   </section>
+   <section id="playView" class="page-view" hidden>
+    <div class="game-heading"><div><div class="breadcrumb"><button id="backToGames">← All games</button><span>/</span><span>PEG JUMP</span></div><div class="game-title-line"><span class="game-title-icon">🎯</span><div><h1>Peg Jump<span class="small-spark">✦</span></h1><p>Jump, think, repeat. Can you leave just one peg?</p></div></div></div><div class="game-heading-actions"><button id="howBtn" class="btn btn-light">❔ How to play</button><button id="shareBtn" class="icon-btn" aria-label="Share game" title="Share game">↗</button></div></div>
+    <div class="play-layout">
+     <section class="game-frame" aria-label="Peg Jump board">
+      <div class="board-head"><div class="mode-tabs" role="group" aria-label="Game mode"><button data-mode="classic" class="mode active">✦ Classic</button><button data-mode="daily" class="mode">☀ Daily</button></div><span id="goalTag" class="goal-tag">THE ORIGINAL TRIANGLE</span></div>
+      <div class="board-backdrop"><div class="board-stars" aria-hidden="true">✦ <span>✳</span> ✦</div><div id="pegBoard" class="board" role="group" aria-label="Triangle board with fifteen holes"><svg id="boardLines" viewBox="0 0 400 380" aria-hidden="true"></svg><div id="boardHoles"></div></div><div class="board-caption" id="boardCaption" aria-live="polite">Tap a peg, then tap where you want to jump.</div></div>
+      <div class="game-toolbar"><button id="undoBtn" class="tool-btn"><span class="tool-emoji">↶</span> Undo</button><button id="hintBtn" class="tool-btn hint-tool"><span class="tool-emoji">💡</span> Hint</button><button id="stepBtn" class="tool-btn"><span class="tool-emoji">✨</span> Solve step</button><button id="resetBtn" class="tool-btn"><span class="tool-emoji">↻</span> Restart</button></div>
+      <div id="resultBanner" class="result-banner" hidden><div id="resultIcon" class="result-icon">🏆</div><div class="result-copy"><h3 id="resultTitle">You did it!</h3><p id="resultDesc">One perfect peg.</p></div><button id="againBtn" class="btn btn-primary">Play again ↗</button></div>
+     </section>
+     <aside class="game-aside">
+      <div class="stats-card"><span class="side-kicker">YOUR GAME AT A GLANCE ✦</span><div class="stat-grid"><div class="stat"><span>PEGS LEFT</span><strong id="pegsStat">14</strong><small>of 14 to clear</small></div><div class="stat"><span>MOVES</span><strong id="movesStat">0</strong><small>jumps taken</small></div><div class="stat"><span>TIME</span><strong id="timeStat">00:00</strong><small>take your time</small></div><div class="stat"><span>BEST</span><strong id="bestStat">—</strong><small>personal record</small></div></div></div>
+      <div class="instructions-card"><span class="card-icon">🧩</span><span class="side-kicker">THE LITTLE SECRET</span><h3>One peg. That's the goal.</h3><p>Jump one peg over another into an empty hole. The middle peg disappears. Keep going until only one remains!</p><div class="steps"><span><b>1</b> Pick a peg</span><span><b>2</b> Jump a neighbour</span><span><b>3</b> Leave just one</span></div></div>
+      <div class="custom-card"><div><span class="side-kicker">MAKE IT YOURS</span><h3>Pick your vibe 🎨</h3></div><div class="palette-list" role="group" aria-label="Board colours"><button class="palette active" data-skin="candy" aria-label="Candy theme" title="Candy"><span style="background:#ff8caa"></span><span style="background:#835bff"></span><span style="background:#ffbc72"></span></button><button class="palette" data-skin="ocean" aria-label="Ocean theme" title="Ocean"><span style="background:#39c3d4"></span><span style="background:#2b83d6"></span><span style="background:#8ae7cc"></span></button><button class="palette" data-skin="sunset" aria-label="Sunset theme" title="Sunset"><span style="background:#ffb46e"></span><span style="background:#fb7096"></span><span style="background:#e3a7fc"></span></button></div><label class="sound-toggle"><input type="checkbox" id="soundToggle"/><span>🔊 Sound effects</span><span class="toggle-switch"></span></label></div>
+     </aside>
+    </div>
+    <div class="below-game"><span>✦ YOUR MIND DESERVES A PLAY BREAK.</span><button id="moreGamesBtn">More brainy fun →</button></div>
+   </section>
+   <section id="gamesView" class="page-view" hidden><div class="collection-top"><span class="kicker">THE MINDPOP COLLECTION ✦</span><h1>A universe of <em>little puzzles.</em></h1><p>One happy brain break is just the beginning. We're building a whole playground of clever little games.</p></div><div id="collectionCards" class="game-grid collection-grid"></div><div class="future-card"><span>✳</span><div><b>More little challenges are on the way.</b><p>Every game will live here, with the same colourful design and offline-friendly experience.</p></div></div></section>
+  </main>
+  <footer class="footer"><span><b>mindpop.</b> Made for curious minds.</span><span>© 2026 MindPop Arcade · Play a little. Smile a lot.</span></footer>
+ </div>
+ <div id="toast" class="toast" role="status" aria-live="polite"></div>
+ <dialog id="guideDialog" class="guide-dialog" aria-labelledby="guideTitle"><div class="dialog-inner"><button id="closeGuide" class="dialog-close" aria-label="Close instructions">×</button><span class="guide-badge">✳ PLAY SMART</span><h2 id="guideTitle">How to play <em>Peg Jump</em></h2><p>Clear the board one jump at a time. The dream ending is just <b>one peg</b> left.</p><div class="guide-steps"><div><strong>01</strong><span>🔵</span><b>Choose a peg</b><p>Tap any peg that can leap over a neighbouring peg.</p></div><div><strong>02</strong><span>↗️</span><b>Jump into a hole</b><p>Move in a straight line across exactly one peg into an empty hole.</p></div><div><strong>03</strong><span>✨</span><b>Watch it vanish</b><p>The peg you jumped over disappears. Try to finish with just one!</p></div></div><div class="guide-tip">💡 Stuck? Use Hint for a smart next move, or Undo to try something different.</div><button id="guidePlay" class="btn btn-primary btn-lg">Got it, let's play ↗</button></div></dialog>
+ <script type="module" src="/app.js"></script>
+</body>
+</html>
