@@ -1,0 +1,2 @@
+import {rm,mkdir,cp} from 'node:fs/promises';
+const dest='dist';await rm(dest,{force:true,recursive:true});await mkdir(dest);for(const file of ['index.html','styles.css','app.js','manifest.webmanifest','sw.js'])await cp(file, dest+'/'+file);await cp('src',dest+'/src',{recursive:true});await cp('icons',dest+'/icons',{recursive:true});console.log('Built the self-contained offline PWA into dist/');
